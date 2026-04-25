@@ -2,10 +2,82 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Amber</title>
+    <title>welcome</title>
+
+    <!-- p5 library -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
   </head>
 
-  <body style="margin:0; overflow:hidden;">
-    <h1>Hello</h1>
+  <body style="margin:0; overflow:hidden; perspective: 800px;">
+
+    <!-- DOTS -->
+    <script src="sketch.js"></script>
+
+    <!-- FACE -->
+    <div id="face-wrapper">
+      <img id="face" src="redface.png" />
+    </div>
+
+    <!-- STYLING -->
+    <style>
+      #face-wrapper {
+        position: fixed;
+        top: 50%;
+        left: 30%;
+        transform: translate(-50%, -50%) rotate(13deg);
+        width: 600px;
+        z-index: 1;
+      }
+
+      #face {
+        width: 100%;
+        transform-style: preserve-3d;
+        will-change: transform;
+      }
+    </style>
+
+    <!-- MOVEMENT -->
+    <script>
+      const face = document.getElementById("face");
+
+      let currentX = 0;
+      let currentY = 0;
+
+      let targetX = 0;
+      let targetY = 0;
+
+     window.addEventListener("mousemove", (e) => {
+  const rect = face.parentElement.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+
+  const dx = (e.clientX - centerX) / (window.innerWidth / 2);
+  const dy = (e.clientY - centerY) / (window.innerHeight / 2);
+
+  // 👇 normalize to -1 → 1 range, then scale
+  targetY = -dx * 35;   // left/right
+  targetX = dy * 40;    // up/down
+});
+
+      function animate() {
+        currentX += (targetX - currentX) * 0.06;
+        currentY += (targetY - currentY) * 0.06;
+
+        const maxTilt = 22;
+
+  currentX = Math.max(-maxTilt, Math.min(maxTilt, currentX));
+  currentY = Math.max(-maxTilt, Math.min(maxTilt, currentY));
+
+        face.style.transform = `
+          rotateX(${currentX}deg)
+          rotateY(${currentY}deg)
+        `;
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    </script>
+
   </body>
 </html>
