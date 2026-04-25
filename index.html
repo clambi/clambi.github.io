@@ -14,17 +14,23 @@
     <script src="sketch.js"></script>
 
     <!-- FACE -->
-    <div id="face-wrapper">
-      <img id="face" src="redface.png" />
-    </div>
+    <a href="faces.html">
+  <div id="face-wrapper">
+    <img id="face" src="redface.png" />
+  </div>
+</a>
 
     <!-- STYLING -->
+
+     a {
+    display: block;
+  }
     <style>
       #face-wrapper {
         position: fixed;
         top: 50%;
-        left: 30%;
-        transform: translate(-50%, -50%) rotate(13deg);
+        left: 47%;
+        transform: translate(-50%, -50%) rotate(17deg);
         width: 600px;
         z-index: 1;
       }
@@ -56,14 +62,18 @@
 
   // 👇 normalize to -1 → 1 range, then scale
   targetY = -dx * 35;   // left/right
-  targetX = dy * 40;    // up/down
+  targetX = dy * 30;    // up/down
 });
 
+//smoothing loop   
       function animate() {
         currentX += (targetX - currentX) * 0.06;
         currentY += (targetY - currentY) * 0.06;
+currentX *= 0.98;
+currentY *= 0.98;
+        
 
-        const maxTilt = 22;
+        const maxTilt = 28;
 
   currentX = Math.max(-maxTilt, Math.min(maxTilt, currentX));
   currentY = Math.max(-maxTilt, Math.min(maxTilt, currentY));

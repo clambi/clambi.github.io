@@ -47,8 +47,11 @@ let palette = [
 ];
   
   //your loops start below
- for (let x = spacing; x < width; x += spacing) {
-  for (let y = spacing; y < height; y += spacing) {
+let offsetX = (width % spacing) / 2;
+let offsetY = (height % spacing) / 2;
+
+for (let x = offsetX; x < width; x += spacing) {
+  for (let y = offsetY; y < height; y += spacing) {
     
 let baseX = x + random(-5, 5);
 let baseY = y + random(-5, 5);
@@ -192,4 +195,8 @@ c.displayY = lerp(c.displayY, newY, 0.7);
 noStroke();
 ellipse(c.displayX, c.displayY, c.size);
   }
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }

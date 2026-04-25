@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>faces</title>
+
+  <!-- p5 library -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+
+    <!-- 🎨 CSS (styling goes here) -->
+    <style>
+
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+
+      /* dots canvas sits behind everything */
+      canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  z-index: 0;
+}
+
+      /* container for faces */
+      .canvas {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1;
+      }
+
+      /* each face */
+     .face {
+  position: absolute;
+  width: 12vw;
+  transform: translate(-50%, -50%);
+}
+
+    </style>
+  </head>
+
+  <body>
+
+    <!-- 🌊 DOTS BACKGROUND (this loads your sketch.js) -->
+    <script src="sketch.js"></script>
+
+    <!-- 🎭 FACES LAYER -->
+    <div class="canvas">
+
+      <img src="coralface.png" class="face" style="left:18%; top:25%; rotate:-10deg; width: clamp(220px, 24vw, 420px);">
+      <img src="lightblueface.png" class="face" style="left:30%; top:35%; rotate:24deg; width: clamp(220px, 21vw, 390px);">
+      <img src="purpleface.png" class="face" style="left:53%; top:35%; rotate:35deg; width: clamp(220px, 21vw, 400px);">
+      <img src="greenface.png" class="face" style="left:78%; top:35%; rotate:27deg; width: clamp(220px, 21vw, 420px);">
+
+      <img src="cyanface.png" class="face" style="left: 15%; top:78%; rotate:10deg; width: clamp(220px, 21vw, 420px);"">
+      <img src="yellowface.png" class="face" style="left:24%; top:80%; rotate:55deg; width: clamp(220px, 22vw, 410px);">
+      <img src="blueface.png" class="face" style="left:60%; top:72%; rotate:-2deg; width: clamp(220px, 15vw, 420px);">
+      <img src="pinkface.png" class="face" style="left:75%; top:80%; rotate:40deg; width: clamp(220px, 20vw, 370px);">
+
+    </div>
+
+  </body>
+</html>
