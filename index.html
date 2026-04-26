@@ -6,12 +6,21 @@
 
     <!-- p5 library -->
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+
+    <!--fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Mono&display=swap" rel="stylesheet">
   </head>
 
   <body style="margin:0; overflow:hidden; perspective: 800px;">
 
     <!-- DOTS -->
     <script src="sketch.js"></script>
+
+<!--CURSOR-->
+<div id="cursor-label">enter</div>
+
+<!--SHADOW-->
+<div id="shadow"></div>
 
     <!-- FACE -->
     <a href="faces.html">
@@ -42,6 +51,43 @@
         transform-style: preserve-3d;
         will-change: transform;
       }
+
+      #shadow {
+  position: fixed;
+  top: 84%;        /* tweak later */
+  left: 50%;
+
+  width: 220px;
+  height: 40px;
+
+  background: rgba(31, 29, 46, 0.757);
+  filter: blur(12px);
+  border-radius: 50%;
+
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+#cursor-label {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  font-size: 16px;
+  font-family: 'Roboto Mono', monospace;
+  color: rgb(255, 255, 255);
+  letter-spacing: 1px;
+text-transform: lowercase;
+
+  pointer-events: none;
+  opacity: 1;
+
+  transform: translate(-50%, -50%);
+  transition: opacity 0.15s ease;
+
+  z-index: 999;
+}
     </style>
 
     <!-- MOVEMENT -->
@@ -89,6 +135,55 @@ currentY *= 0.98;
       }
 
       animate();
+
+      const shadow = document.getElementById("shadow");
+
+let shadowX = 0;
+let shadowTargetX = 0;
+let shadowY = 0;          // 👈 MUST exist
+let shadowTargetY = 0;    // 👈 MUST exist
+
+window.addEventListener("mousemove", (e) => {
+  const dx = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+shadowTargetX = -dx * 120;
+
+// vertical = based on horizontal distance (not dy)
+shadowTargetY = Math.abs(dx) * 40;});
+
+function animateShadow() {
+  shadowX += (shadowTargetX - shadowX) * 0.12;
+
+ shadowY += (shadowTargetY - shadowY) * 0.12;
+
+ 
+
+shadow.style.transform = `
+  translateX(calc(-50% + ${shadowX}px))
+  translateY(${shadowY}px)
+`;
+
+  requestAnimationFrame(animateShadow);
+}
+
+animateShadow();
+
+const label = document.getElementById("cursor-label");
+const faceWrapper = document.getElementById("face-wrapper");
+
+// track mouse position
+window.addEventListener("mousemove", (e) => {
+  label.style.left = e.clientX + "px";
+  label.style.top = e.clientY -10 + "px";
+});
+
+// show/hide on hover
+faceWrapper.addEventListener("mouseenter", () => {
+  label.style.opacity = 1;
+});
+
+faceWrapper.addEventListener("mouseleave", () => {
+  label.style.opacity = 0;
+});
     </script>
 
   </body>
