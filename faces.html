@@ -55,6 +55,24 @@
   100% { transform: translate(-50%, -50%); }
 }
 
+#cursor-label {
+  position: fixed;
+  pointer-events: none;
+
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+
+  background: rgba(0, 0, 0, 0.379);
+  padding: 2px 6px;
+  border-radius: 4px;
+
+  opacity: 0;
+  transform: translate(-50%, -120%);
+  transition: opacity 0.15s ease;
+
+  z-index: 10;
+}
     </style>
   </head>
 
@@ -66,18 +84,43 @@
     <!-- 🎭 FACES LAYER -->
     <div class="canvas">
 
-      <img src="coralface.png" class="face" style="left:18%; top:25%; rotate:-10deg; width: clamp(220px, 24vw, 420px);">
-      <img src="lightblueface.png" class="face" style="left:31%; top:35%; rotate:24deg; width: clamp(220px, 21vw, 390px);">
-      <img src="purpleface.png" class="face" style="left:53%; top:35%; rotate:35deg; width: clamp(220px, 21vw, 400px);">
-      <img src="greenface.png" class="face" style="left:78%; top:35%; rotate:27deg; width: clamp(220px, 21vw, 420px);">
+      <img src="coralface.png" class="face" data-label="self"style="left:18%; top:25%; rotate:-10deg; width: clamp(220px, 24vw, 420px);">
+      <img src="lightblueface.png" class="face" data-label="system" style="left:31%; top:35%; rotate:24deg; width: clamp(220px, 21vw, 390px);">
+      <img src="purpleface.png" class="face" data-label="body" style="left:53%; top:35%; rotate:35deg; width: clamp(220px, 21vw, 400px);">
+      <img src="greenface.png" class="face" data-label="process" style="left:78%; top:35%; rotate:27deg; width: clamp(220px, 21vw, 420px);">
 
-      <img src="cyanface.png" class="face" style="left: 15%; top:78%; rotate:10deg; width: clamp(220px, 21vw, 420px);"">
-      <img src="yellowface.png" class="face" style="left:24%; top:80%; rotate:55deg; width: clamp(220px, 22vw, 410px);">
-      <img src="blueface.png" class="face" style="left:60%; top:72%; rotate:-2deg; width: clamp(220px, 15vw, 420px);">
-      <img src="pinkface.png" class="face" style="left:75%; top:80%; rotate:40deg; width: clamp(220px, 20vw, 370px);">
+      <img src="cyanface.png" class="face" data-label="states" style="left: 15%; top:78%; rotate:10deg; width: clamp(220px, 21vw, 420px);"">
+      <img src="yellowface.png" class="face" data-label="fragments" style="left:24%; top:80%; rotate:55deg; width: clamp(220px, 22vw, 410px);">
+      <img src="blueface.png" class="face" data-label="contact" style="left:60%; top:72%; rotate:-2deg; width: clamp(220px, 15vw, 420px);">
+      <img src="pinkface.png" class="face" data-label="becoming"style="left:75%; top:80%; rotate:40deg; width: clamp(220px, 20vw, 370px);">
 
     </div>
     
+    <!--CURSOR LABEL-->
+<div id="cursor-label"></div>
+
+<!--CURSOR HOVER INTERACTION LOGIC-->
+<script>
+const label = document.getElementById("cursor-label");
+const faces = document.querySelectorAll(".face");
+
+faces.forEach(face => {
+  face.addEventListener("mouseenter", () => {
+    label.textContent = face.dataset.label;
+    label.style.opacity = 1;
+  });
+
+  face.addEventListener("mouseleave", () => {
+    label.style.opacity = 0;
+  });
+});
+
+window.addEventListener("mousemove", (e) => {
+  label.style.left = e.clientX + "px";
+  label.style.top = e.clientY + "px";
+});
+</script>
 
   </body>
+
 </html>
