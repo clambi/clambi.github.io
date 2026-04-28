@@ -9,6 +9,49 @@
 
   <!-- STYLE -->
   <style>
+     #cursor-label {
+  position: fixed;
+  pointer-events: none;
+
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+
+  background: rgba(0, 0, 0, 0.379);
+  padding: 2px 6px;
+  border-radius: 4px;
+
+  opacity: 0;
+  transform: translate(-50%, -120%);
+  transition: opacity 0.15s ease;
+
+  z-index: 2000;
+}
+   
+   /*back to faces button*/
+    .home-button {
+  position: fixed;
+  bottom: 50px;
+  right: 90px;
+
+  width: 100px;
+  height: auto;
+
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.home-button img {
+  width: 100%;
+  display: block;
+  transition: transform 0.2s ease;
+  animation: float 4s ease-in-out infinite;
+}
+
+.home-button:hover img {
+  transform: scale(1.1);
+}
+
     body {
       margin: 0;
       overflow: hidden;
@@ -43,7 +86,7 @@
       background: rgba(255, 255, 255, 0.887);
       backdrop-filter: blur(2px);
 
-      padding: 30px 40px;
+      padding: 55px 50px;
 
       text-align: center;
     }
@@ -63,10 +106,15 @@
       text-decoration: underline;
        font-weight: 700;
     }
+
   </style>
 </head>
 
 <body>
+<!--BACK TO FACES BUTTON-->
+<a href="faces.html" class="home-button" data-label="return">
+  <img src="redface.png" alt="back to faces" style="rotate: 30deg;">
+</a>
 
   <!-- DOT CONFIG -->
   <script>
@@ -86,6 +134,31 @@
       <a href="mailto:youremail@gmail.com">amber.abboud@gmail.com</a>
     </div>
   </div>
+
+  <!--Cursor Label-->
+  <div id="cursor-label"></div>
+
+  <script>
+const label = document.getElementById("cursor-label");
+
+// follow cursor
+window.addEventListener("mousemove", (e) => {
+  label.style.left = e.clientX + "px";
+  label.style.top = (e.clientY - 10) + "px";
+});
+
+// show label on hover
+document.querySelectorAll("[data-label]").forEach(el => {
+  el.addEventListener("mouseenter", () => {
+    label.textContent = el.getAttribute("data-label");
+    label.style.opacity = 1;
+  });
+
+  el.addEventListener("mouseleave", () => {
+    label.style.opacity = 0;
+  });
+});
+</script>
 
 </body>
 </html>

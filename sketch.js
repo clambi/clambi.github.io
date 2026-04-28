@@ -1,5 +1,5 @@
 const config = window.dotConfig || {
-  mode: "color",
+  mode: "monocolor",
   monocolor: "#25726b"
 };
 
