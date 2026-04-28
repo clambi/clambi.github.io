@@ -83,14 +83,28 @@
   </head>
 
   <body>
+ 
+  <!-- DOT CONFIG FIRST -->
+<script>
+  window.dotConfig = {
+    mode: "color"
+  };
+</script>
 
-    <!-- 🌊 DOTS BACKGROUND (this loads your sketch.js) -->
-    <script src="sketch.js"></script>
+<!-- THEN load sketch -->
+<script src="sketch.js"></script>
 
     <!-- 🎭 FACES LAYER -->
     <div class="canvas">
 
-      <img src="coralface.png" class="face" data-label="self"style="left:18%; top:25%; rotate:-10deg; width: clamp(220px, 24vw, 420px);">
+      <a href="about.html" style="left:18%; top:28%; transform: rotate(-10deg); position: absolute;">
+  <img 
+    src="coralface.png" 
+    class="face" 
+    data-label="self"
+    style="width: clamp(220px, 24vw, 420px);"
+  >
+</a>
       <img src="lightblueface.png" class="face" data-label="system" style="left:31%; top:35%; rotate:24deg; width: clamp(220px, 21vw, 390px);">
       <img src="purpleface.png" class="face" data-label="body" style="left:53%; top:35%; rotate:35deg; width: clamp(220px, 21vw, 400px);">
       <img src="greenface.png" class="face" data-label="process" style="left:78%; top:35%; rotate:27deg; width: clamp(220px, 21vw, 420px);">

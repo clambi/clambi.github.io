@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>about</title>
+
+  <!-- p5 dots -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+         #cursor-label {
+  position: fixed;
+  pointer-events: none;
+isolation: isolate;
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+
+  background: rgba(0, 0, 0, 0.379);
+  padding: 2px 6px;
+  border-radius: 4px;
+
+  opacity: 1;
+  transform: translate(-50%, -120%);
+  transition: opacity 0.15s ease;
+
+  z-index: 999999;
+  
+}
+   
+   /*back to faces button*/
+    .home-button {
+  position: fixed;
+  bottom: 50px;
+  right: 90px;
+
+  width: 100px;
+  height: auto;
+
+  z-index: 15;
+  cursor: pointer;
+}
+
+.home-button img {
+  width: 100%;
+  display: block;
+  transition: transform 0.2s ease;
+  animation: float 4s ease-in-out infinite;
+}
+
+.home-button:hover img {
+  transform: scale(1.1);
+}
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    /* dots canvas */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;   /* 👈 THIS IS THE FIX */
+    }
+
+    /* content layer */
+    .content {
+      position: relative;
+      z-index: 1;
+      padding: 40px 80px 100px;
+        max-width: 1200px;   /* 👈 KEY */
+  margin: 0 auto;      /* center the whole layout */
+    }
+
+    .title {
+  text-align: center;
+  font-size: 46px;
+  margin: 0;
+  letter-spacing: 4px;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+}
+
+.title-box {
+  width: 100%;
+  background-color: #341c2bf3;
+
+  height: 100px;              /* fixed height */
+  display: flex;              /* enables centering */
+  align-items: center;        /* vertical center */
+  justify-content: center;    /* horizontal center */
+
+  margin-bottom: 80px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.454);
+}
+
+.intro {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  position: relative; /* FIXED */
+  z-index: 2;
+}
+
+.text-block {
+  
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgb(0, 0, 0);
+  font-family: 'Roboto Slab', serif;
+  background: rgba(244, 149, 189, 0.942);  /* translucent white */
+  backdrop-filter: blur(4px);              /* soft blur behind */
+  padding: 30px;
+}
+
+.text-block p {
+  margin-bottom: 18px;
+}
+
+.photo-block {
+  width: 50%;
+  max-width: 500px;
+   z-index:3;
+}
+
+.photo-block img {
+  width: 100%;
+  height: auto;
+  display: block;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.454);
+   
+   
+}
+@media (max-width: 900px) {
+  .intro {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .text-block,
+  .photo-block {
+    width: 100%;
+  }
+
+  .photo-block img {
+    width: 100%;
+  }
+}
+.intro-wrapper {
+  position: relative;
+   max-width: 1100px;   /* or 1000–1200, tweak to taste */
+  margin: 0 auto;      /* centers it */
+}
+
+.scribble {
+    position: absolute;
+    pointer-events: none;
+    
+}
+.scribble-1 {
+  top: 29%;
+  left: -10%;
+  transform: rotate(-5deg);
+  width: 60%;
+  max-width: 700px;
+  z-index: 0;
+}
+.scribble-2 {
+  top: -6%;
+  left: 50%;
+  width: 60%;
+  max-width: 700px;
+  z-index: 0;
+}
+
+.scribble-3 {
+  top: 45%;
+  left: 54%;
+  width: 60%;
+  max-width: 700px;
+  z-index: 0;
+  
+}
+.scribble-4 {
+  top: 93%;
+  left: -9%;
+  width: 60%;
+  max-width: 700px;
+  z-index: 0;
+  transform: rotate(-5deg);
+  
+}
+
+.row {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  margin-top: 100px;
+}
+
+.row-reverse {
+  flex-direction: row-reverse;
+}
+
+.text-block,
+.image-block {
+  flex: 1;
+}
+
+.image-block img {
+  width: 100%;
+  height: auto;
+  display: block;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+.column-layout {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.text-centered {
+  max-width: 600px;
+}
+
+.full-width img {
+  width: 80%;
+  max-width: 900px;
+  margin-top: 40px;
+}
+
+
+.final-text {
+  max-width: 1000px;
+  margin: 120px auto 0;
+  text-align: center;
+
+  width: 100%;
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgb(0, 0, 0);
+  font-family: 'Roboto Slab', serif;
+  background: rgba(255, 131, 189, 0.942);  /* translucent white */
+  backdrop-filter: blur(4px);              /* soft blur behind */
+  padding: 30px;
+}
+
+.eyes-container {
+  position: relative;
+  width: 120%;
+  max-width: 500px;
+}
+
+.eyes-base {
+  width: 100%;
+  display: block;
+}
+
+.pupil {
+  position: absolute;
+  width: 30%; /* scales with eyes */
+  pointer-events: none;
+  transition: transform 0.05s linear;
+}
+
+/* you will tweak these */
+.pupil-left {
+  top: 23%;
+  left: 15%;
+}
+
+.pupil-right {
+  top: 25%;
+  left: 60%;
+}
+.eyes-block {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+  </style>
+</head>
+
+
+<body>
+    <!--Cursor Label-->
+  <div id="cursor-label"></div>
+
+<!--BACK TO FACES BUTTON-->
+<a href="faces.html" class="home-button" data-label="return">
+  <img src="redface.png" alt="back to faces" style="rotate: 30deg;">
+</a>
+
+  <!-- DOT CONFIG -->
+  <script>
+    window.dotConfig = {
+      mode: "monocolor",
+      monocolor: "#FFBDC9" // same teal as contact page
+    };
+  </script>
+
+  <!-- DOTS -->
+  <script src="sketch.js"></script>
+
+  <!-- CONTENT -->
+<div class="content">
+
+  <div class="title-box">
+    <h1 class="title">Amber Abboud</h1>
+  </div>
+  <div class="intro-wrapper">
+    
+   
+    <img src="Scribble1.png" class="scribble scribble-1">
+    <img src="Scribble1.png" class="scribble scribble-2">
+    <img src="Scribble2.png" class="scribble scribble-3">
+    <img src="Scribble1.png" class="scribble scribble-4">
+  
+
+  <div class="intro">
+
+    <div class="text-block">
+      <p>
+        My work explores the relationship between internal experience and physical systems.
+      </p>
+      <p>
+        I create images that move between bodies, cells, faces, and patterns, treating each as a way of understanding what it feels like to exist from the inside.
+      </p>
+      <p>
+        Through repetition, variation, and layered textures, I build a visual language that blurs the line between structure and intuition, biology and emotion, form and feeling.
+      </p>
+      <p>
+        I am interested in how identity shifts and reorganizes, not as a fixed attribute, but as something that takes form and adapts through perception, attention, and time.
+      </p>
+    </div>
+
+    <div class="photo-block">
+      <img src="itsamber.jpeg" alt="Amber Abboud">
+    </div>
+
+  </div>
+
+<div class="row row-reverse">
+
+  <div class="text-block">
+    <p>
+      I notice that what I make shifts with my internal state, often before I fully understand it.
+    </p>
+
+    <p>
+      As an image begins to take form, it becomes something I can decode, a reflection of my own emotions.
+    </p>
+
+    <p>
+      Through this process, making becomes an act of recognition, where internal states take form and become perceptible just beyond immediate awareness.
+    </p>
+  </div>
+
+   <div class="image-block">
+    <img src="neondreamer.png" alt="Face painting">
+  </div>
+</div>
+<div class="row eyes-row">
+
+  <div class="text-block">
+    <p>
+      What emerges through this process is a body of work that engages a reciprocal relationship of perception, where the viewer exists as both observer and observed.
+    </p>
+
+    <p>
+      This dynamic unsettles fixed ways of seeing, allowing meaning to shift through interaction and attention.
+    </p>
+
+    <p>
+      In this way, the work resists a single interpretation, remaining in flux as it is encountered.
+    </p>
+  </div>
+
+  <div class="eyes-block">
+    <div class="eyes-container">
+      <img src="emptyeyes.png" class="eyes-base">
+
+      <img src="pupil.png" class="pupil pupil-left">
+      <img src="pupil.png" class="pupil pupil-right">
+    </div>
+  </div>
+
+</div>
+
+<script>
+const pupils = document.querySelectorAll('.pupil');
+const container = document.querySelector('.eyes-container');
+
+let targetX = 0;
+let targetY = 0;
+
+let currentX = 0;
+let currentY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  targetX = e.clientX;
+  targetY = e.clientY;
+});
+
+function animate() {
+  const rect = container.getBoundingClientRect();
+
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+
+  // smooth easing
+  currentX += (targetX - currentX) * 0.18;
+  currentY += (targetY - currentY) * 0.18;
+
+  let dx = (currentX - centerX) * 0.03;
+  let dy = (currentY - centerY) * 0.03;
+
+  // clamp movement so pupils stay inside eye
+  const max = 20;
+  dx = Math.max(-max, Math.min(max, dx));
+  dy = Math.max(-max, Math.min(max, dy));
+
+  pupils.forEach((pupil, i) => {
+    const offset = i === 0 ? -2 : 2;
+    pupil.style.transform = `translate(${dx + offset}px, ${dy}px)`;
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+
+  <script>
+const label = document.getElementById("cursor-label");
+
+// follow cursor
+window.addEventListener("mousemove", (e) => {
+  label.style.left = e.clientX + "px";
+  label.style.top = (e.clientY - 10) + "px";
+});
+
+// show label on hover
+document.querySelectorAll("[data-label]").forEach(el => {
+  el.addEventListener("mouseenter", () => {
+    label.textContent = el.getAttribute("data-label");
+    label.style.opacity = 1;
+  });
+
+  el.addEventListener("mouseleave", () => {
+    label.style.opacity = 0;
+  });
+});
+</script>
+
+</body>
+</html>

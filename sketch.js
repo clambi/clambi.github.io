@@ -3,7 +3,7 @@ const config = window.dotConfig || {
   monocolor: "#25726b"
 };
 
-
+let monoHue;
 let circles = [];
 
   // 👇 DEFINE RULES HERE (top-level)
@@ -26,6 +26,11 @@ function setup() {
   colorMode(HSB, 360, 100, 100);
 
   let spacing = 60;
+
+ if (config.mode === "monocolor" && config.monocolor) {
+  let monoColor = color(config.monocolor);
+  monoHue = hue(monoColor);
+}
   
 // new color mappinng block
 
@@ -192,7 +197,7 @@ if (t < 0.15) {
   if (config.mode === "monocolor") {
 
     // map original hue → small teal range
-    let baseHue = 180; // teal
+    let baseHue = monoHue;
     let hueSpread = 20;
 
     let mappedHue = baseHue + map(c.hue, 0, 360, -hueSpread, hueSpread);
