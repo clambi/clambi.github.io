@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>contact</title>
+
+  <!-- p5 dots -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+
+  <!-- STYLE -->
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    /* dots canvas */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+    }
+
+    /* content layer */
+    .content {
+      position: relative;
+      z-index: 1;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* contact box */
+    .box {
+      background: rgba(255, 255, 255, 0.887);
+      backdrop-filter: blur(2px);
+
+      padding: 30px 40px;
+
+      text-align: center;
+    }
+
+    .box p {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .box a {
+      color: black;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .box a:hover {
+      text-decoration: underline;
+       font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- DOT CONFIG -->
+  <script>
+  window.dotConfig = {
+    mode: "monocolor",
+    monocolor: "#25726b" // 👈 pick any color here
+  };
+</script>
+
+  <!-- DOTS -->
+  <script src="sketch.js"></script>
+
+  <!-- CONTENT -->
+  <div class="content">
+    <div class="box">
+      <p>contact</p>
+      <a href="mailto:youremail@gmail.com">amber.abboud@gmail.com</a>
+    </div>
+  </div>
+
+</body>
+</html>

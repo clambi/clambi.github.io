@@ -1,3 +1,9 @@
+const config = window.dotConfig || {
+  mode: "color",
+  monocolor: "#25726b"
+};
+
+
 let circles = [];
 
   // 👇 DEFINE RULES HERE (top-level)
@@ -181,12 +187,28 @@ let dim = map(intensity, 0, 1, 0.3, 1);  // controls how visible inactive dots a
 let t = c.colorIntensity;
 
 if (t < 0.15) {
-  fill(0, 0, 0); // snap to black
+  fill(0, 0, 0);
 } else {
-  let saturation = c.sat;
-  let brightness = c.bri * pow(t, 2);
+  if (config.mode === "monocolor") {
 
-  fill(c.hue, saturation, brightness);
+    // map original hue → small teal range
+    let baseHue = 180; // teal
+    let hueSpread = 20;
+
+    let mappedHue = baseHue + map(c.hue, 0, 360, -hueSpread, hueSpread);
+
+   let brightness = map(c.bri * pow(t, 2), 0, 100, 20, 70);
+
+    fill(mappedHue, 60, brightness);
+
+  } else {
+
+    let saturation = c.sat;
+    let brightness = c.bri * pow(t, 2);
+
+    fill(c.hue, saturation, brightness);
+
+  }
 }
     // smooth toward new position
 c.displayX = lerp(c.displayX, newX, 0.7);
