@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>systems</title>
+
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+         #cursor-label {
+  position: fixed;
+  pointer-events: none;
+
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+
+  background: rgba(0, 0, 0, 0.379);
+  padding: 2px 6px;
+  border-radius: 4px;
+
+  opacity: 0;
+  transform: translate(-50%, -120%);
+  transition: opacity 0.15s ease;
+
+  isolation: isolate;
+
+  z-index:9999;
+         }
+
+          .home-button {
+  position: fixed;
+  bottom: 50px;
+  right: 90px;
+
+  width: 100px;
+  height: auto;
+
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.home-button img {
+  width: 100%;
+  display: block;
+  transition: transform 0.2s ease;
+  animation: float 4s ease-in-out infinite;
+}
+
+.home-button:hover img {
+  transform: scale(1.1);
+}
+
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    /* dots canvas */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* content wrapper */
+   .content {
+  position: relative;
+  z-index: 1;
+
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 40px;
+}
+
+    /* title */
+   /* .title {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 60px;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 3px;
+      color: #341c2b;
+    }*/
+
+    /* text block */
+    .text-block {
+      font-size: 18px;
+      line-height: 1.7;
+      font-family: 'Roboto Slab', serif;
+
+      background: rgba(199, 210, 248, 0.889);
+      backdrop-filter: blur(4px);
+    
+
+      padding: 30px;
+      text-align: center;
+    }
+
+   .text-block {
+  max-width: 600px;
+  text-align: center;
+}
+.system-line {
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.system-line span {
+  opacity: 0.2;
+  filter: blur(5px);
+  transition: all 1.2s ease;
+}
+
+/* revealed state */
+.system-line.revealed span:nth-child(1) {
+  opacity: 1;
+  filter: blur(0);
+  transition-delay: 0s;
+}
+
+.system-line.revealed span:nth-child(3) {
+  opacity: 1;
+  filter: blur(0);
+  transition-delay: 0.4s;
+}
+
+.system-line.revealed span:nth-child(5) {
+  opacity: 1;
+  filter: blur(0);
+  transition-delay: 0.8s;
+}
+
+.system-line.revealed span:nth-child(7) {
+  opacity: 1;
+  filter: blur(0);
+  transition-delay: 1.2s;
+}
+.system-line span:nth-child(2),
+.system-line span:nth-child(4),
+.system-line span:nth-child(6) {
+  opacity: 0.6;
+  filter: none;
+}
+
+  </style>
+</head>
+
+
+<body>
+
+    <a href="faces.html" class="home-button" data-label="return">
+  <img src="redface.png" alt="back to faces" style="rotate: 30deg;">
+</a>
+
+<!--Cursor Label-->
+ <div id="cursor-label"></div>
+
+  <script>
+const label = document.getElementById("cursor-label");
+
+// follow cursor
+window.addEventListener("mousemove", (e) => {
+  label.style.left = e.clientX + "px";
+  label.style.top = (e.clientY - 10) + "px";
+});
+
+// show label on hover
+document.querySelectorAll("[data-label]").forEach(el => {
+  el.addEventListener("mouseenter", () => {
+    label.textContent = el.getAttribute("data-label");
+    label.style.opacity = 1;
+  });
+
+  el.addEventListener("mouseleave", () => {
+    label.style.opacity = 0;
+  });
+});
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+    
+  <!-- DOT CONFIG -->
+  <script>
+    window.dotConfig = {
+      mode: "monocolor",
+      monocolor: "#CED1D9"
+    };
+  </script>
+
+  <!-- DOTS -->
+  <script src="sketch.js"></script>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+   <!--<h1 class="title">systems</h1> -->
+
+    <div class="text-block">
+     <p>
+This site is structured around controlled visibility. Not everything is immediately available, and access is shaped through interaction. Elements don’t fully reveal themselves unless they’re engaged with, and what becomes visible depends on how the space is approached.
+</p>
+
+<p class="system-line">
+  <span>approach</span>
+  <span>→</span>
+  <span>engage</span>
+  <span>→</span>
+  <span>reveal</span>
+  <span>→</span>
+  <span>perceive</span>
+</p>
+
+<p class="final-line">This is the system.</p>
+    </div>
+
+  </div>
+
+<!--Sequence Hold-->
+<script>
+const systemLine = document.querySelector('.system-line');
+
+let timeout;
+
+systemLine.addEventListener('mouseenter', () => {
+  clearTimeout(timeout);
+  systemLine.classList.add('revealed');
+});
+
+systemLine.addEventListener('mouseleave', () => {
+  timeout = setTimeout(() => {
+    systemLine.classList.remove('revealed');
+  }, 2000); // 👈 stays visible for 2 seconds
+});
+</script>
+
+
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    
     <meta charset="UTF-8">
     <title>welcome</title>
 
@@ -13,7 +14,20 @@
 
   <body style="margin:0; overflow:hidden; perspective: 800px;">
 
+    <!-- MOBILE BLOCK -->
+    <div class="mobile-block">
+  <p>Oh no!</p>
+  <p>It appears you are accessing this site from a mobile or otherwise restricted device.</p>
+  <p>This site is best experienced on desktop.</p>
+</div>
+
     <!-- DOTS -->
+     <script>
+  window.dotConfig = {
+    mode: "color"
+  };
+</script>
+
      
     <script src="sketch.js"></script>
 
@@ -34,6 +48,27 @@
 
      
     <style>
+      /* hide by default */
+.mobile-block {
+  display: none;
+}
+
+/* mobile override */
+@media (max-width: 768px) {
+  body > *:not(.mobile-block) {
+    display: none;
+  }
+
+  .mobile-block {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    font-family: 'Roboto Slab', serif;
+  }
+}
      a {
     display: block;
   }
@@ -187,6 +222,7 @@ faceWrapper.addEventListener("mouseleave", () => {
   label.style.opacity = 0;
 });
     </script>
+
 
   </body>
 </html>
