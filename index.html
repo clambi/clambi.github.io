@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>welcome</title>
 
@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Mono&display=swap" rel="stylesheet">
   </head>
 
-  <body style="margin:0; overflow:hidden; perspective: 800px;">
+ <body style="margin:0; perspective: 800px;">
 
     <!-- MOBILE BLOCK -->
     <div class="mobile-block">
@@ -54,24 +54,25 @@
 }
 
 /* mobile override */
+/* mobile override */
 @media (max-width: 768px) {
-  body > *:not(.mobile-block) {
+
+  body *:not(.mobile-block):not(.mobile-block *) {
     display: none;
   }
 
   .mobile-block {
     display: flex;
     height: 100vh;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 20px;
     font-family: 'Roboto Slab', serif;
   }
+
 }
-     a {
-    display: block;
-  }
      
      #face-wrapper {
         position: fixed;
