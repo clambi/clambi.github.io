@@ -199,11 +199,13 @@ document.querySelectorAll("[data-label]").forEach(el => {
     
   <!-- DOT CONFIG -->
   <script>
-    window.dotConfig = {
-      mode: "monocolor",
-      monocolor: "#CED1D9"
-    };
-  </script>
+  window.dotConfig = {
+    mode: "monocolor",
+    monocolor: "#CED1D9",
+     baseDotBrightness: 80, // 👈 try 60–90 range
+    softFade: true   // 👈 NEW FLAG
+  };
+</script>
 
   <!-- DOTS -->
   <script src="sketch.js"></script>

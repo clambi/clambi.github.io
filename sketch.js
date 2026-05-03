@@ -191,28 +191,50 @@ let gray = 80;
 let dim = map(intensity, 0, 1, 0.3, 1);  // controls how visible inactive dots are
 let t = c.colorIntensity;
 
-if (t < 0.15) {
-  fill(0, 0, 0);
+let baseBrightness = window.dotConfig?.baseDotBrightness ?? 0;
+let isSoftFade = window.dotConfig?.softFade ?? false;
+
+if (isSoftFade) {
+
+  // compute normal color
+  let baseHue = monoHue;
+  let hueSpread = 20;
+
+  let mappedHue = baseHue + map(c.hue, 0, 360, -hueSpread, hueSpread);
+
+  let raw = c.bri * pow(t, 2);
+  let brightness = map(raw, 0, 100, baseBrightness, 70);
+
+  // 👇 fade saturation instead of cutting off color
+  let sat = lerp(0, 60, t);
+
+  fill(mappedHue, sat, brightness);
+
 } else {
-  if (config.mode === "monocolor") {
 
-    // map original hue → small teal range
-    let baseHue = monoHue;
-    let hueSpread = 20;
-
-    let mappedHue = baseHue + map(c.hue, 0, 360, -hueSpread, hueSpread);
-
-   let brightness = map(c.bri * pow(t, 2), 0, 100, 20, 70);
-
-    fill(mappedHue, 60, brightness);
-
+  // ORIGINAL behavior untouched
+  if (t < 0.15) {
+    fill(0, 0, baseBrightness);
   } else {
 
-    let saturation = c.sat;
-    let brightness = c.bri * pow(t, 2);
+    if (config.mode === "monocolor") {
 
-    fill(c.hue, saturation, brightness);
+      let baseHue = monoHue;
+      let hueSpread = 20;
 
+      let mappedHue = baseHue + map(c.hue, 0, 360, -hueSpread, hueSpread);
+      let brightness = map(c.bri * pow(t, 2), 0, 100, 20, 70);
+
+      fill(mappedHue, 60, brightness);
+
+    } else {
+
+      let saturation = c.sat;
+      let brightness = c.bri * pow(t, 2);
+
+      fill(c.hue, saturation, brightness);
+
+    }
   }
 }
     // smooth toward new position
