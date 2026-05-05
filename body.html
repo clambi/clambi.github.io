@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Selected Works</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f8f8f8;
+      overflow-x: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 1;
+    }
+
+      /* dots canvas */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+           #cursor-label {
+  position: fixed;
+  pointer-events: none;
+isolation: isolate;
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+
+  background: rgba(0, 0, 0, 0.379);
+  padding: 2px 6px;
+  border-radius: 4px;
+
+  opacity: 0;
+  transform: translate(-50%, -120%);
+  transition: opacity 0.15s ease;
+
+  z-index: 999999;
+  
+}
+   
+   /*back to faces button*/
+    .home-button {
+  position: fixed;
+  bottom: 50px;
+  right: 90px;
+
+  width: 100px;
+  height: auto;
+
+  z-index: 15;
+  cursor: pointer;
+}
+
+.home-button img {
+  width: 100%;
+  display: block;
+  transition: transform 0.2s ease;
+  animation: float 4s ease-in-out infinite;
+}
+
+.home-button:hover img {
+  transform: scale(1.1);
+}
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    /* dots canvas */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;   /* 👈 THIS IS THE FIX */
+    }
+
+    /*css for sections*/
+    .section {
+  width: 80%;
+  margin: 60px auto;
+}
+
+.section-header {
+  width: 100%;
+  text-align: center;
+font-size:20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: 3px;
+
+  padding: 20px 0;
+  margin-bottom: 60px;
+
+  background: #050116de;
+  color: white;
+
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.cell-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  gap: 80px; /* 👈 increase from 60 → 80 */
+}
+
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.cell-image {
+  height: 450px;   /* 👈 pick your visual size */
+  width: auto;     /* keeps proportions */
+  display: block;
+}
+
+.cell-title {
+  font-family: 'Roboto Slab', serif;
+  font-size: 16px;
+  color: white;
+
+  text-align:center;
+
+  background: rgba(1, 7, 26, 0.838);
+  padding: 8px 14px;
+  border-radius: 4px;
+
+    margin-top: 10px;
+}
+
+.description-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.cell-description {
+  font-family: 'Roboto Slab', serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: white;
+
+  text-align: center;
+
+  width: 100%;
+  max-width: 980px; /* 👈 controls how wide it gets */           /* 👈 KEY CHANGE */
+   margin: 10px auto 0;
+ 
+
+  background: rgba(52, 59, 81, 0.941);
+  padding: 24px;
+  border-radius: 10px;
+}
+
+  </style>
+</head>
+
+<body>
+   <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+    
+  <!-- DOT CONFIG -->
+  <script>
+  window.dotConfig = {
+    mode: "monocolor",
+    monocolor: "#85868F",
+     baseDotBrightness: 80, // 👈 try 60–90 range
+    softFade: true   // 👈 NEW FLAG
+  };
+</script>
+
+  <!-- DOTS -->
+  <script src="sketch.js"></script>
+
+
+  <div class="page-content">
+    <!-- your sections will go here -->
+     <div class="section">
+
+  <div class="section-header">
+    SELECTED WORKS
+  </div>
+
+  <div class="section-content">
+
+    
+    <div class="cell-row">
+      
+      <div class="cell">
+        <img src="pinkcell.jpg" class="cell-image">
+        <div class="cell-title">Animal Cell, 2023</div>
+      </div>
+
+      <div class="cell">
+       <img src="greencell.jpg" class="cell-image">
+        <div class="cell-title">Plant Cell, 2024</div>
+      </div>
+
+    </div>
+
+    <div class="description-wrap">
+    <div class="cell-description">
+        <p><strong>Cellular biology, reimagined.</strong></p>
+
+  <p>
+    Through dense, looping marks and vivid color, these structures are embedded with a sense of movement and aliveness.
+  </p>
+
+  <p>
+    They are not scientific diagrams, but intuitive unfoldings of life at a microscopic scale.
+  </p>
+    </div>
+
+    </div>
+
+  </div>
+
+</div>
+  </div>
+
+  <script src="p5.min.js"></script>
+  <script src="sketch.js"></script>
+
+      <a href="faces.html" class="home-button" data-label="return">
+  <img src="redface.png" alt="back to faces" style="rotate: 30deg;">
+</a>
+
+<!--Cursor Label-->
+ <div id="cursor-label"></div>
+
+  <script>
+const label = document.getElementById("cursor-label");
+
+// follow cursor
+window.addEventListener("mousemove", (e) => {
+  label.style.left = e.clientX + "px";
+  label.style.top = (e.clientY - 10) + "px";
+});
+
+// show label on hover
+document.querySelectorAll("[data-label]").forEach(el => {
+  el.addEventListener("mouseenter", () => {
+    label.textContent = el.getAttribute("data-label");
+    label.style.opacity = 1;
+  });
+
+  el.addEventListener("mouseleave", () => {
+    label.style.opacity = 0;
+  });
+});
+</script>
+
+</body>
+</html>
