@@ -5,25 +5,39 @@
   <title>systems</title>
 
   <!-- fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
 
-    .domino-layer {
+.domino-layer {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+ 
+  width: 1200px;
+  height: 800px;
+
+   top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
   pointer-events: none; /* so text still works */
   z-index: 5;
 }
 
 .domino {
   position: absolute;
-  width: 260px; /* adjust later */
+  width: 210px;
   transform-origin: center;
+
+    opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: auto;
+  cursor:pointer;
+  will-change:transoform;
+}
+
+.domino.visible {
+  opacity: 1;
 }
 
          #cursor-label {
@@ -46,6 +60,59 @@
 
   z-index:9999;
          }
+
+.domino-interaction {
+  pointer-events: auto;
+}
+
+.domino.active {
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%   { transform: scale(1) var(--rotation); }
+  50%  { transform: scale(1.06) var(--rotation); }
+  100% { transform: scale(1) var(--rotation); }
+}
+
+.capicu-spin {
+  animation: spin 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes spin {
+  0%   { transform: scale(1) var(--rotation); }
+  50%  { transform: scale(1.2) var(--rotation) rotate(360deg); }
+  100% { transform: scale(1) var(--rotation); }
+}
+
+.capicu-text {
+  position: fixed;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  font-style:italic;
+
+  color: #341c2b;
+
+  background: rgba(148, 165, 223, 0.9);
+  backdrop-filter: blur(4px);
+
+  padding: 16px 28px;
+  border-radius: 8px;
+
+  border: 1px solid rgba(52, 28, 43, 0.2);
+
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+
+  z-index: 9999;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
 
           .home-button {
   position: fixed;
@@ -132,7 +199,7 @@
     }
 
    .text-block {
-  max-width: 600px;
+  max-width: 550px;
   text-align: center;
 }
 .system-line {
@@ -183,25 +250,96 @@
 
 <body>
     <div class="domino-layer">
+        <div class="domino-interaction">
   <!-- dominos go here -->
-   <img src="domino6-6.png" class="domino" style="left: 5%; top: 73%; transform: rotate(90deg);">
-   <img src="domino6-4.png" class="domino" style="left: 16%; top: 75%; transform: rotate(0deg);">
-   <img src="domino4-3.png" class="domino" style="left: 30.5%; top: 75%; transform: rotate(0deg);">
-   <img src="domino3-3.png" class="domino" style="left: 40.5%; top: 75%; transform: rotate(90deg);">
-   <img src="domino3-5.png" class="domino" style="left: 51.5%; top: 75%; transform: rotate(0deg);">
-   <img src="domino5-2.png" class="domino" style="left: 66%; top: 75%; transform: rotate(0deg);">
-   <img src="domino2-0.png" class="domino" style="left: 70.5%; top: 54.5%; transform: rotate(270deg);">
-   <img src="domino0-0.png" class="domino" style="left: 70.5%; top: 36%; transform: rotate(0deg);">
-   <img src="domino0-1.png" class="domino" style="left: 70.5%; top: 15.7%; transform: rotate(270deg);">
-   <img src="domino1-2.png" class="domino" style="left: 59.5%; top: 8.5%; transform: rotate(180deg);">
-   <img src="domino2-2.png" class="domino" style="left: 48.7%; top: 8.5%; transform: rotate(90deg);">
-   <img src="domino4-2.png" class="domino" style="left: 38.6%; top: 8.5%; transform: rotate(0deg);">
-   <img src="domino5-4.png" class="domino" style="left: 23.8%; top: 8.9%; transform: rotate(0deg);">
-   <img src="domino0-5.png" class="domino" style="left: 9%; top: 9%; transform: rotate(0deg);">
-   <img src="domino0-3.png" class="domino" style="left: 6%; top: 28.4%; transform: rotate(90deg);">
-   <img src="domino3-6.png" class="domino" style="left: 8%; top: 52%; transform: rotate(20deg);">
-
+   <img src="domino6-6.png" class="domino visible active" data-index="0" style="left: 90px; top: 570px; --rotation: rotate(90deg); transform:var(--rotation)">
+   <img src="domino6-4.png" class="domino" data-index="1" style="left: 222px; top: 570px; --rotation: rotate(0deg); transform:var(--rotation)">
+   <img src="domino4-3.png" class="domino" data-index="2" style="left: 396px; top: 576px; --rotation: rotate(0deg); transform:var(--rotation)">
+   <img src="domino3-3.png" class="domino" data-index="3" style="left: 516px; top: 570px; --rotation: rotate(90deg); transform:var(--rotation)">
+   <img src="domino3-5.png" class="domino" data-index="4" style="left: 648px; top: 576px; --rotation: rotate(0deg); transform:var(--rotation)">
+   <img src="domino5-2.png" class="domino" data-index="5" style="left: 822px; top: 576px; --rotation: rotate(0deg); transform:var(--rotation)">
+   <img src="domino2-0.png" class="domino" data-index="6" style="left: 879px; top: 444px; --rotation: rotate(270deg); transform:var(--rotation)">
+   <img src="domino0-0.png" class="domino" data-index="7" style="left: 884px; top: 323px; --rotation: rotate(2deg); transform:var(--rotation)">
+   <img src="domino0-1.png" class="domino" data-index="8" style="left: 884px; top: 189px; --rotation: rotate(270deg); transform:var(--rotation)">
+   <img src="domino1-2.png" class="domino" data-index="9" style="left: 751px; top: 136px; --rotation: rotate(180deg); transform:var(--rotation)">
+   <img src="domino2-2.png" class="domino" data-index="10" style="left: 623px; top: 130px; --rotation: rotate(90deg); transform:var(--rotation)">
+   <img src="domino4-2.png" class="domino" data-index="11" style="left: 503px; top: 139px; --rotation: rotate(0deg); transform:var(--rotation)">
+   <img src="domino5-4.png" class="domino" data-index="12" style="left: 328px; top: 132px; --rotation: rotate(0deg); transform:var(--rotation)">
+   <img src="domino0-5.png" class="domino" data-index="13" style="left: 153px; top: 139px; --rotation: rotate(0deg); transform:var(--rotation)">
+   <img src="domino0-3.png" class="domino" data-index="14" style="left: 100px; top: 266px; --rotation: rotate(90deg); transform:var(--rotation)">
+   <img src="domino3-6.png" class="domino" data-index="15" style="left: 106px; top: 421px; --rotation: rotate(20deg); transform:var(--rotation)">
+  </div>
 </div>
+
+<!--domino reveal logic-->
+<script>
+const dominos = document.querySelectorAll('.domino');
+
+let currentIndex = 0;
+
+// first disable everything
+dominos.forEach(domino => {
+  domino.style.pointerEvents = 'none';
+});
+
+// THEN enable first domino
+dominos[currentIndex].style.pointerEvents = 'auto';
+
+dominos.forEach((domino, index) => {
+  domino.addEventListener('click', () => {
+    if (index !== currentIndex) return;
+
+    const next = dominos[currentIndex + 1];
+
+if (next) {
+  next.classList.add('visible');
+
+  dominos[currentIndex].classList.remove('active');
+  next.classList.add('active');
+
+  dominos[currentIndex].style.pointerEvents = 'none';
+ 
+  currentIndex++;
+
+if (currentIndex < dominos.length - 1) {
+  next.style.pointerEvents = 'auto';
+}
+
+  // 👇 NEW: check if this is the LAST domino
+  if (currentIndex === dominos.length - 1) {
+    setTimeout(() => triggerCapicu(), 200);
+  }
+}
+
+  });
+});
+
+function triggerCapicu() {
+  const last = dominos[currentIndex];
+
+  // 👇 STOP pulse
+  last.classList.remove('active');
+
+  // spin animation
+  last.classList.add('capicu-spin');
+
+  // show text
+  const text = document.createElement('div');
+  text.innerText = '¡capicú!';
+  text.classList.add('capicu-text');
+
+  // 👇 NEW POSITIONING LOGIC
+  const rect = last.getBoundingClientRect();
+
+  text.style.left = rect.left + rect.width / 2 + "px";
+  text.style.top = rect.top - 20 + "px";
+  text.style.transform = "translate(-50%, -100%)";
+
+  document.body.appendChild(text);
+}
+</script>
+
+
 
     <a href="faces.html" class="home-button" data-label="return">
   <img src="redface.png" alt="back to faces" style="rotate: 30deg;">
@@ -283,11 +421,6 @@ systemLine.addEventListener('mouseenter', () => {
   systemLine.classList.add('revealed');
 });
 
-systemLine.addEventListener('mouseleave', () => {
-  timeout = setTimeout(() => {
-    systemLine.classList.remove('revealed');
-  }, 2000); // 👈 stays visible for 2 seconds
-});
 </script>
 
 
