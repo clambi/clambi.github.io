@@ -122,10 +122,20 @@ font-size:20px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
+/* clickable images (lightbox behavior) */
+img[onclick] {
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+img[onclick]:hover {
+  transform: scale(1.02);
+}
+
 .section-content {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 8px;
 }
 
 .cell-row {
@@ -148,6 +158,7 @@ font-size:20px;
   height: 450px;   /* 👈 pick your visual size */
   width: auto;     /* keeps proportions */
   display: block;
+  margin-top: 40px;
 }
 
 .cell-title {
@@ -161,12 +172,13 @@ font-size:20px;
   padding: 8px 14px;
   border-radius: 4px;
 
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .description-wrap {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .cell-description {
@@ -179,12 +191,153 @@ font-size:20px;
 
   width: 100%;
   max-width: 980px; /* 👈 controls how wide it gets */           /* 👈 KEY CHANGE */
-   margin: 10px auto 0;
+   margin: 4px auto 0;
  
 
   background: rgba(52, 59, 81, 0.941);
   padding: 24px;
   border-radius: 10px;
+}
+
+/* row of 3 eye curtain images */
+.eye-gallery-row {
+  display: flex;              /* puts the images in a row */
+  justify-content: center;    /* centers the row */
+  align-items: flex-start;    /* aligns image tops */
+  gap: 30px;                  /* space between images */
+  flex-wrap: nowrap;          /* keeps images on one row */
+  margin-top: 60px;
+}
+
+/* eye curtain images */
+.eye-image {
+  height: 480px;              /* change this to resize images */
+  width: auto;
+  display: block;
+  min-width: 220px;   /* 👈 prevents images from getting too small */
+}
+
+/* title + description under the image row */
+.eye-info {
+ width: fit-content;   /* 👈 makes it match content width */
+  margin: 12px auto 0;        /* space above + centers it */
+}
+
+.eye-info .cell-description {
+  width: 100%;
+  max-width: none;           /* 👈 removes the old 980px cap */
+}
+
+.eye-title-wrap {
+  display: flex;
+  justify-content: center;  /* centers the title */
+   margin-bottom: 7px;  /* 👈 THIS is the new spacing */
+}
+
+/* Beings Section */
+
+.artwork-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 140px;
+}
+
+.art-image {
+  width: 100%;
+  max-width: 900px;
+
+  height: auto;
+  display: block;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.diptych-series {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.featured-artwork {
+  margin-top: 40px;
+}
+
+.diptych-series .artwork-block {
+  margin-bottom: 0px;
+}
+
+.diptych-series .description-wrap {
+  margin-top: 0px;
+}
+
+.side-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  gap: 35px;
+
+  margin-bottom: 140px;
+}
+
+.side-text {
+  width: 520px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.side-text .description-wrap {
+  width: 100%;
+}
+
+.side-text .cell-description {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  
+  
+}
+
+.side-image {
+  width: 100%;
+  max-width: 400px;
+
+  height: auto;
+  display: block;
+}
+
+.artwork-block .cell-title {
+  margin-bottom: 8px;
+}
+
+
+
+/* LIGHTBOX BACKGROUND */
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.85);
+
+  display: none; /* hidden by default */
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+}
+
+/* LIGHTBOX IMAGE */
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
 }
 
   </style>
@@ -215,18 +368,75 @@ font-size:20px;
     SELECTED WORKS
   </div>
 
+
+
+</div>
+
+<div class="section">
+
+  <div class="eye-gallery-row">
+
+    <!-- IMAGE 1: full/head-on view -->
+    <img src="eyeplaceholder-1.jpeg" class="eye-image" onclick="openLightbox(this.src)">
+
+    <!-- IMAGE 2: motion / double-sided / hanging view -->
+    <img src="eyeplaceholder-2.jpeg" class="eye-image" onclick="openLightbox(this.src)">
+
+    <!-- IMAGE 3: close-up / material detail -->
+    <img src="eyeplaceholder-3.jpeg" class="eye-image" onclick="openLightbox(this.src)">
+
+  </div>
+
+ <div class="eye-info">
+
+  <div class="eye-title-wrap">
+    <div class="cell-title">
+      Visions in Grue, 2026
+    </div>
+  </div>
+
+   <!-- NEW WRAPPER -->
+    <div class="description-wrap">
+
+    <div class="cell-description">
+
+  <p>
+    In Ancient Egyptian, there was no distinction between blue and green. These colors were defined by a single category: grue.
+  </p>
+
+  <p>
+    This piece explores perception before language, where boundaries between color, object, and meaning have yet to be defined.
+  </p>
+
+  <p>
+    Composed of handmade recycled paper and repeated painted eyes, the work forms a suspended field of looking, both observing and being observed.
+  </p>
+
+  <p>
+    As a curtain, it exists as a threshold: something to move through, something that interrupts, and something that sees you back.
+  </p>
+
+</div>
+
+     </div>
+
+  </div>
+
+</div>
+
+  <!--Cell Section-->
   <div class="section-content">
 
     
     <div class="cell-row">
       
       <div class="cell">
-        <img src="pinkcell.jpg" class="cell-image">
+        <img src="pinkcell.jpg" class="cell-image" onclick="openLightbox(this.src)">
         <div class="cell-title">Animal Cell, 2023</div>
       </div>
 
       <div class="cell">
-       <img src="greencell.jpg" class="cell-image">
+       <img src="greencell.jpg" class="cell-image" onclick="openLightbox(this.src)">
         <div class="cell-title">Plant Cell, 2024</div>
       </div>
 
@@ -249,12 +459,188 @@ font-size:20px;
 
   </div>
 
+  <!--Beings Section-->
+ <div class="section">
+  <h2 class="section-header">BEINGS</h2>
 </div>
+
+<!--chaotic diptych-->
+
+<div class="section">
+
+  <div class="diptych-series">
+
+    <!-- FIRST DIPTYCH -->
+    <div class="artwork-block">
+      <img src="chaotic-diptych.jpeg"
+           class="art-image"
+           onclick="openLightbox(this.src)"
+           alt="Internal Vibrance">
+
+      <div class="cell-title">
+        Internal Vibrance, 2024
+      </div>
+    </div>
+
+    <!-- SECOND DIPTYCH -->
+    <div class="artwork-block featured-artwork">
+      <img src="green-diptych.jpeg"
+           class="art-image"
+           onclick="openLightbox(this.src)"
+           alt="Green Diptych">
+
+      <div class="cell-title">
+        External Restraint, 2024
+      </div>
+    </div>
+
+    <!-- SHARED DESCRIPTION -->
+    <div class="description-wrap">
+      <div class="cell-description">
+        <p>
+          Created as paired studies in portraiture and abstraction, these works explore how internal states can be translated through color, rhythm, and form.
+        </p>
+
+        <p>
+          Each diptych mirrors emotional and psychological textures across two visual languages: the face and the abstract field.
+        </p>
+     </div>
+    </div>
+
   </div>
 
+</div>
+
+<!--blue hair section-->
+<div class="section">
+
+  <div class="side-layout">
+
+    <!-- TEXT -->
+    <div class="side-text">
+
+      <div class="cell-title">
+        Atmospheric Drift, 2024
+      </div>
+
+      <div class="cell-description">
+
+        <p>
+         A study in emotional suspension, atmospheric movement, and detached presence.
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- IMAGE -->
+    <img src="blue-hair.jpeg"
+         class="side-image"
+         onclick="openLightbox(this.src)"
+         alt="Blue Hair Portrait">
+
+  </div>
+
+</div>
+
+<!--geometric portrait-->
+<div class="section">
+
+  <div class="side-layout">
+
+    <!-- IMAGE LEFT -->
+    <img src="geometric-portrait.jpeg"
+         class="side-image"
+         style="max-width: 400px;"
+         onclick="openLightbox(this.src)"
+         alt="Geometric Portrait">
+
+    <!-- TEXT RIGHT -->
+    <div class="side-text">
+
+      <div class="cell-title">
+        Structural Emergence, 2025
+      </div>
+
+      <div class="description-wrap">
+        <div class="cell-description">
+          <p>
+            A study in iterative process and reconstruction, where a previously unresolved portrait was revisited through layering, geometry, and structural detail.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!--double portrait-->
+<div class="section">
+
+  <div class="artwork-block">
+    <img src="double-portrait.jpeg"
+         class="art-image"
+         style="max-width: 750px;"
+         onclick="openLightbox(this.src)"
+         alt="Double Portrait">
+
+    <div class="cell-title">
+      Transmissions in the Cosmic Ether, 2025
+    </div>
+
+    <div class="description-wrap">
+      <div class="cell-description">
+        <p>
+          As a recurring motif, this painting depicts two figures suspended in mutual observation, connected through a central frequency of energy, signal, or thought.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="section">
+
+  <div class="side-layout">
+
+    <!-- TEXT -->
+    <div class="side-text">
+
+      <div class="cell-title">
+        The Light Keeper, Guardian of Whimsy, 2022
+      </div>
+
+      <div class="cell-description">
+        <p>
+          Through solar imagery, organic growth, and sacred play, this figure functions as a guardian presence rooted in warmth, light, and whimsy.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- IMAGE -->
+    <img src="ivy-sun-cropped.jpeg"
+         class="side-image"
+         onclick="openLightbox(this.src)"
+         alt="Ivy Sun Painting">
+
+  </div>
+
+</div>
+
+  </div> <!--end page content-->
+
+
+
+  <!--Dots-->
   <script src="p5.min.js"></script>
   <script src="sketch.js"></script>
 
+
+  <!--return to faces button-->
       <a href="faces.html" class="home-button" data-label="return">
   <img src="redface.png" alt="back to faces" style="rotate: 30deg;">
 </a>
@@ -282,6 +668,21 @@ document.querySelectorAll("[data-label]").forEach(el => {
     label.style.opacity = 0;
   });
 });
+</script>
+
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="">
+</div>
+
+<script>
+function openLightbox(src) {
+  document.getElementById("lightbox").style.display = "flex";
+  document.getElementById("lightbox-img").src = src;
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").style.display = "none";
+}
 </script>
 
 </body>
