@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <title>systems</title>
 
@@ -10,6 +11,34 @@
 
   <style>
 
+
+
+  .mobile-block {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px 24px;
+  font-family: 'Roboto Mono', monospace;
+  color: #1e2643;
+  box-sizing: border-box;
+}
+
+.mobile-graphic {
+  width: min(82vw, 420px);
+  height: auto;
+  margin: 6px 0 22px 0;
+}
+
+.mobile-top,
+.mobile-bottom {
+  max-width: 340px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
 .domino-layer {
   position: fixed;
  
@@ -244,11 +273,62 @@
   filter: none;
 }
 
+      /* hide by default */
+.mobile-block {
+  display: none;
+}
+
+/* mobile override */
+/* mobile override */
+@media (max-width: 768px) {
+
+  body *:not(.mobile-block):not(.mobile-block *) {
+    display: none;
+  }
+
+  .mobile-block {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px 24px;
+  font-family: 'Roboto Mono', monospace;
+  color: #1e2643;
+  box-sizing: border-box;
+}
+
+.mobile-graphic {
+  width: min(82vw, 420px);
+  height: auto;
+  margin: 6px 0 22px 0;
+}
+
+.mobile-top,
+.mobile-bottom {
+  max-width: 340px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+}
   </style>
 </head>
 
 
 <body>
+
+   <!-- MOBILE BLOCK -->
+    <div class="mobile-block">
+  <p class="mobile-top">This site is currently designed for desktop viewing only.</p>
+
+  <img src="desktoponly.png" class="mobile-graphic" alt="Desktop viewing illustration">
+
+  <p class="mobile-bottom">For the best experience, please visit on a desktop or laptop computer.</p>
+</div>
+
     <div class="domino-layer">
         <div class="domino-interaction">
   <!-- dominos go here -->

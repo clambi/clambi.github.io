@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <title>Selected Works</title>
 
@@ -340,10 +341,62 @@ img[onclick]:hover {
   max-height: 90%;
 }
 
+      /* hide by default */
+.mobile-block {
+  display: none;
+}
+
+/* mobile override */
+/* mobile override */
+@media (max-width: 768px) {
+
+  body *:not(.mobile-block):not(.mobile-block *) {
+    display: none;
+  }
+
+  .mobile-block {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px 24px;
+  font-family: 'Roboto Mono', monospace;
+  color: #1e2643;
+  box-sizing: border-box;
+}
+
+.mobile-graphic {
+  width: min(82vw, 420px);
+  height: auto;
+  margin: 6px 0 22px 0;
+}
+
+.mobile-top,
+.mobile-bottom {
+  max-width: 340px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+}
+
   </style>
 </head>
 
 <body>
+
+    <!-- MOBILE BLOCK -->
+    <div class="mobile-block">
+  <p class="mobile-top">This site is currently designed for desktop viewing only.</p>
+
+  <img src="desktoponly.png" class="mobile-graphic" alt="Desktop viewing illustration">
+
+  <p class="mobile-bottom">For the best experience, please visit on a desktop or laptop computer.</p>
+</div>
+
    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
     
   <!-- DOT CONFIG -->
@@ -377,13 +430,13 @@ img[onclick]:hover {
   <div class="eye-gallery-row">
 
     <!-- IMAGE 1: full/head-on view -->
-    <img src="eyesangledcrop.jpeg" class="eye-image" onclick="openLightbox(this.src)">
+    <img src="eyecurtanfrontcam.jpg" class="eye-image" onclick="openLightbox(this.src)">
 
     <!-- IMAGE 2: motion / double-sided / hanging view -->
-    <img src="eyeswide.jpeg" class="eye-image" onclick="openLightbox(this.src)">
+    <img src="eyesback.jpg" class="eye-image" onclick="openLightbox(this.src)">
 
     <!-- IMAGE 3: close-up / material detail -->
-    <img src="eyesclose.jpeg" class="eye-image" onclick="openLightbox(this.src)">
+    <img src="longexposure2bright.jpg" class="eye-image" onclick="openLightbox(this.src)">
 
   </div>
 
