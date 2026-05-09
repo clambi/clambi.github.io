@@ -146,47 +146,84 @@
 <!-- THEN load sketch -->
 <script src="sketch.js"></script>
 
-    <!-- 🎭 FACES LAYER -->
-    <div class="canvas">
+   <!-- 🎭 FACES LAYER -->
+<div class="canvas">
 
-      <a href="about.html" style="left:18%; top:28%; transform: rotate(-10deg); position: absolute;">
-  <img 
-    src="coralface.png" 
-    class="face" 
-    data-label="self"
-    style="width: clamp(220px, 24vw, 420px);"
+  <!-- SELF -->
+  <a href="about.html" style="left:26%; top:27%; transform: rotate(-10deg); position:absolute;">
+    <img
+      src="coralface.png"
+      class="face"
+      data-label="self"
+      style="width: clamp(220px, 24vw, 420px);"
+    >
+  </a>
+
+  <!-- BODY -->
+  <a href="body.html" style="display: contents;">
+    <img
+      src="lightblueface.png"
+      class="face"
+      data-label="body"
+      style="left:42%; top:31%; rotate:24deg; width: clamp(220px, 21vw, 390px);"
+    >
+  </a>
+
+  <!-- BROADCASTS -->
+ <a href="broadcasts.html" style="left:73%; top:25%; transform: rotate(27deg); position:absolute;">
+  <img
+    src="greenface.png"
+    class="face"
+    data-label="broadcasts"
+    style="width: clamp(220px, 21vw, 420px);"
   >
-<a href="systems.html" style="display: contents;">
-  <img 
-    src="lightblueface.png" 
-    class="face" 
-    data-label="system"
-    style="left:31%; top:35%; rotate:24deg; width: clamp(220px, 21vw, 390px);"
+</a>
+
+  <!-- SYSTEM -->
+  <a href="systems.html" style="display: contents;">
+    <img
+      src="cyanface.png"
+      class="face"
+      data-label="system"
+      style="left:25%; top:78%; rotate:10deg; width: clamp(220px, 21vw, 420px);"
+    >
+  </a>
+
+  <!-- BEINGS -->
+  <a href="beings.html" style="left:49%; top:74%; transform: rotate(55deg); position:absolute;">
+  <img
+    src="yellowface.png"
+    class="face"
+    data-label="beings"
+    style="width: clamp(220px, 22vw, 420px);"
   >
 </a>
-      <a href="body.html" style="left:61%; top:27%; transform: rotate(35deg); position: absolute;">
-  <img src="purpleface.png" class="face" data-label="body" style="width: clamp(220px, 21vw, 400px);">
-</a>
-      <img src="greenface.png" class="face" data-label="process" style="left:78%; top:35%; rotate:27deg; width: clamp(220px, 21vw, 420px);">
 
-      <a href="beings.html" style="display: contents;">
-  <img src="cyanface.png" class="face" data-label="beings" style="left: 15%; top:78%; rotate:10deg; width: clamp(220px, 21vw, 420px);">
-</a>
-      <img src="yellowface.png" class="face" data-label="fragments" style="left:24%; top:80%; rotate:55deg; width: clamp(220px, 22vw, 410px);">
-      <a href="contact.html" style="left:60%; top:72%; transform: translate(-50%, -50%);">
-  <img src="blueface.png" class="face" data-label="contact"style="rotate:-2deg; width: clamp(220px, 15vw, 420px);">
-</a>
-     <a href="broadcasts.html"
-   style="left:83%; top:73%; transform: rotate(40deg); position:absolute;">
+  <!-- CONTACT -->
+  <a href="contact.html" style="left:65%; top:79%; transform: translate(-50%, -50%);">
+    <img
+      src="pinkface.png"
+      class="face"
+      data-label="contact"
+      style="rotate:40deg; width: clamp(220px, 20vw, 370px);"
+    >
+  </a>
 
-  <img src="pinkface.png"
-       class="face"
-       data-label="broadcasts"
-       style="width: clamp(220px, 20vw, 370px);">
+  <!-- HIDDEN / ARCHIVED FACES -->
 
-</a>
+  <!--
+  <a href="body.html" style="left:61%; top:27%; transform: rotate(35deg); position:absolute;">
+    <img src="purpleface.png" class="face" data-label="body" style="width: clamp(220px, 21vw, 400px);">
+  </a>
+  -->
 
-    </div>
+  <!--
+  <a href="contact.html" style="left:60%; top:72%; transform: translate(-50%, -50%);">
+    <img src="blueface.png" class="face" data-label="contact" style="rotate:-2deg; width: clamp(220px, 15vw, 420px);">
+  </a>
+  -->
+
+</div>
     
     <!--CURSOR LABEL-->
 <div id="cursor-label"></div>
