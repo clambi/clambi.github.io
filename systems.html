@@ -213,6 +213,14 @@
       color: #341c2b;
     }*/
 
+    .systems-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin: 0 0 28px 0;
+  color: #341c2b;
+}
     /* text block */
     .text-block {
       font-size: 18px;
@@ -234,6 +242,7 @@
 .system-line {
   font-weight: 500;
   letter-spacing: 1px;
+  margin: 22px 0;
 }
 
 .system-line span {
@@ -266,9 +275,17 @@
   filter: blur(0);
   transition-delay: 1.2s;
 }
+
+.system-line.revealed span:nth-child(9) {
+  opacity: 1;
+  filter: blur(0);
+  transition-delay: 1.6s;
+}
+
 .system-line span:nth-child(2),
 .system-line span:nth-child(4),
-.system-line span:nth-child(6) {
+.system-line span:nth-child(6),
+.system-line span:nth-child(8) {
   opacity: 0.6;
   filter: none;
 }
@@ -473,35 +490,66 @@ document.querySelectorAll("[data-label]").forEach(el => {
    <!--<h1 class="title">systems</h1> -->
 
     <div class="text-block">
-     <p>
-This site was coded from scratch and is structured around controlled visibility. Not everything is immediately available, and access is shaped through interaction. Elements don’t fully reveal themselves unless they’re engaged with, and what becomes visible depends on how the space is approached.
+     <p class="systems-title">
+    Systems of Interest
+  </p>
+
+<p class="system-line">
+  <span>conceal</span>
+  <span>→</span>
+  <span>invite</span>
+  <span>→</span>
+  <span>interact</span>
+  <span>→</span>
+  <span>reveal</span>
 </p>
 
 <p class="system-line">
-  <span>approach</span>
+  <span>notice</span>
   <span>→</span>
-  <span>engage</span>
+  <span>play</span>
   <span>→</span>
-  <span>reveal</span>
+  <span>discover</span>
   <span>→</span>
-  <span>perceive</span>
+  <span>iterate</span>
+  <span>→</span>
+  <span>refine</span>
 </p>
 
-<p class="final-line">This is the system.</p>
+<p class="system-line">
+  <span>observe</span>
+  <span>→</span>
+  <span>map</span>
+  <span>→</span>
+  <span>connect</span>
+  <span>→</span>
+  <span>understand</span>
+</p>
+
+<p class="system-line">
+  <span>experience</span>
+  <span>→</span>
+  <span>translate</span>
+  <span>→</span>
+  <span>externalize</span>
+  <span>→</span>
+  <span>witness</span>
+</p>
+
     </div>
 
   </div>
 
 <!--Sequence Hold-->
 <script>
-const systemLine = document.querySelector('.system-line');
+const systemLines = document.querySelectorAll('.system-line');
 
-let timeout;
-
-systemLine.addEventListener('mouseenter', () => {
-  clearTimeout(timeout);
-  systemLine.classList.add('revealed');
+systemLines.forEach(line => {
+  line.addEventListener('mouseenter', () => {
+    line.classList.add('revealed');
+  });
 });
+
 
 </script>
 

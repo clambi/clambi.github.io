@@ -316,7 +316,69 @@ img[onclick]:hover {
   margin-bottom: 8px;
 }
 
+/* ==========================
+   PROCESS GALLERY
+========================== */
 
+.process-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 18px;
+
+  width: 100%;
+  max-width: 980px;   /* keeps it the same width as your descriptions */
+  margin: 50px auto 20px;
+}
+
+.process-featured img {
+  width: 100%;
+  
+
+  display: block;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,.12);
+}
+
+.process-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 8px;
+}
+
+.process-grid img {
+  width: 100%;
+
+
+  display: block;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,.12);
+
+  cursor: zoom-in;
+  transition: transform .2s ease;
+}
+
+.process-grid img:hover,
+.process-featured img:hover {
+  transform: scale(1.02);
+}
+
+.process-panel {
+    background: rgba(0, 0, 0, 0.136);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    padding: 10px;
+
+    border-radius: 18px;
+
+    margin: 10px auto;
+
+    max-width: 1150px;
+}
 
 /* LIGHTBOX BACKGROUND */
 #lightbox {
@@ -480,44 +542,68 @@ img[onclick]:hover {
 
 </div>
 
-  <!--Cell Section-->
-  <div class="section-content">
+ <div class="section">
+  <h2 class="section-header"> </h2>
+</div>
 
-    
-    <div class="cell-row">
-      
-      <div class="cell">
-        <img src="pinkcell.jpg" class="cell-image" onclick="openLightbox(this.src)">
-        <div class="cell-title">Animal Cell, 2023</div>
-      </div>
+<div class="process-panel">
+<div class="section">
 
-      <div class="cell">
-       <img src="greencell.jpg" class="cell-image" onclick="openLightbox(this.src)">
-        <div class="cell-title">Plant Cell, 2024</div>
-      </div>
+    <div class="process-gallery">
 
+        <!-- LARGE IMAGE -->
+
+        <div class="process-featured">
+            <img src="fear-example.jpg"
+                 onclick="openLightbox(this.src)"
+                 alt="Internal to Visual installation rendering">
+        </div>
+
+        <!-- SMALL IMAGES -->
+
+        <div class="process-grid">
+
+            <img src="installation-concept.jpg"
+                 onclick="openLightbox(this.src)"
+                 alt="Installation concept">
+
+            <img src="build-strategy.jpg"
+                 onclick="openLightbox(this.src)"
+                 alt="Build strategy">
+
+            <img src="body-mapping.jpg"
+                 onclick="openLightbox(this.src)"
+                 alt="Body mapping">
+
+            <img src="conceptual-materials.jpg"
+                 onclick="openLightbox(this.src)"
+                 alt="Conceptual materials">
+
+        </div>
+
+    </div>
+
+    <div class="eye-title-wrap">
+    <div class="cell-title">
+        Internal to Visual, 2026
+    </div>
     </div>
 
     <div class="description-wrap">
-    <div class="cell-description">
-        <p><strong>Cellular biology, reimagined.</strong></p>
+        <div class="cell-description">
 
-  <p>
-    Through dense, looping marks and vivid color, these structures are embedded with a sense of movement and aliveness.
-  </p>
+          <p>Conceptual materials for a proposed responsive multisensory installation that translates internal emotional states into an accessible visual system, mapping shared lived experience across a human form and projected environment.</p>
 
-  <p>
-    They are not scientific diagrams, but intuitive unfoldings of life at a microscopic scale.
-  </p>
+        </div>
     </div>
 
-    </div>
+</div>
+</div>
 
-  </div>
-
-  <!--Beings Section-->
+ 
+<!--Beings Section-->
  <div class="section">
-  <h2 class="section-header">BEINGS</h2>
+  <h2 class="section-header"> </h2>
 </div>
 
 <!--chaotic diptych-->
@@ -567,6 +653,84 @@ img[onclick]:hover {
 
 </div>
 
+ <div class="section">
+  <h2 class="section-header"> </h2>
+</div>
+
+  <!--Cell Section-->
+  <div class="section-content">
+
+    
+    <div class="cell-row">
+      
+      <div class="cell">
+        <img src="pinkcell.jpg" class="cell-image" onclick="openLightbox(this.src)">
+        <div class="cell-title">Animal Cell, 2023</div>
+      </div>
+
+      <div class="cell">
+       <img src="greencell.jpg" class="cell-image" onclick="openLightbox(this.src)">
+        <div class="cell-title">Plant Cell, 2024</div>
+      </div>
+
+    </div>
+
+    <div class="description-wrap">
+    <div class="cell-description">
+        <p><strong>Cellular biology, reimagined.</strong></p>
+
+  <p>
+    Through dense, looping marks and vivid color, these structures are embedded with a sense of movement and aliveness.
+  </p>
+
+  <p>
+    They are not scientific diagrams, but intuitive unfoldings of life at a microscopic scale.
+  </p>
+    </div>
+
+    </div>
+
+  </div>
+
+   <div class="section">
+  <h2 class="section-header"> </h2>
+</div>
+
+  
+<!--geometric portrait-->
+<div class="section">
+
+  <div class="side-layout">
+
+    <!-- IMAGE LEFT -->
+    <img src="le clown.jpg"
+         class="side-image"
+         style="max-width: 400px;"
+         onclick="openLightbox(this.src)"
+         alt="Geometric Portrait">
+
+    <!-- TEXT RIGHT -->
+    <div class="side-text">
+
+      <div class="cell-title">
+        Wisest in the, 2026
+      </div>
+
+      <div class="description-wrap">
+        <div class="cell-description">
+          <p>
+            A portrait exploring the space between performed identity and authentic emotion, where costume becomes a mask that both reveals and conceals.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
 <!--blue hair section-->
 <div class="section">
 
@@ -599,45 +763,17 @@ img[onclick]:hover {
 
 </div>
 
-<!--geometric portrait-->
 <div class="section">
-
-  <div class="side-layout">
-
-    <!-- IMAGE LEFT -->
-    <img src="blue-hair.jpeg"
-         class="side-image"
-         style="max-width: 400px;"
-         onclick="openLightbox(this.src)"
-         alt="Geometric Portrait">
-
-    <!-- TEXT RIGHT -->
-    <div class="side-text">
-
-      <div class="cell-title">
-        Atmospheric Drift, 2024
-      </div>
-
-      <div class="description-wrap">
-        <div class="cell-description">
-          <p>
-            A study in emotional suspension, atmospheric movement, and detached presence.
-          </p>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
+  <h2 class="section-header"> </h2>
 </div>
+
 
 <div class="section">
 
   <div class="side-layout">
 
     <!-- TEXT -->
-    <div class="side-text">
+    <!--div class="side-text">
 
       <div class="cell-title">
         Structural Emergence, 2025
@@ -654,7 +790,7 @@ img[onclick]:hover {
     </div>
 
     <!-- IMAGE -->
-    <img src="geometric-portrait.jpeg"
+    <!--img src="geometric-portrait.jpeg"
          class="side-image"
          onclick="openLightbox(this.src)"
          alt="Blue Hair Portrait">
@@ -663,7 +799,9 @@ img[onclick]:hover {
 
 </div>
 
+
 <!--double portrait-->
+
 <div class="section">
 
   <div class="artwork-block">
